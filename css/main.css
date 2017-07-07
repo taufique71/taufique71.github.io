@@ -1,4 +1,15 @@
 .navbar-nav a{
-    font-size: 20px;
     font-family: 'Roboto', sans-sherif;
+}
+.navbar-brand {
+    font-family: 'Cabin Sketch', cursive;
+}
+
+@media (min-width: 400px){
+    /*.navbar-nav a{*/
+        /*font-size: 18px;*/
+    /*}*/
+    .navbar-brand {
+        font-size: 30px;
+    }
 }
