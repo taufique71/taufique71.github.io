@@ -1,15 +1,26 @@
-.navbar-nav a{
-    font-family: 'Roboto', sans-sherif;
-}
-.navbar-brand {
-    font-family: 'Cabin Sketch', cursive;
+/*.navbar-nav a{*/
+    /*font-family: 'Roboto', sans-sherif;*/
+/*}*/
+/*.navbar-brand {*/
+    /*font-family: 'Cabin Sketch', cursive;*/
+/*}*/
+
+/*@media (min-width: 400px){*/
+    /*[>.navbar-nav a{<]*/
+        /*[>font-size: 18px;<]*/
+    /*[>}<]*/
+    /*.navbar-brand {*/
+        /*font-size: 30px;*/
+    /*}*/
+/*}*/
+
+/*------------------------------------------*
+
+/* CSS for absolute simple and clear design */
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
-@media (min-width: 400px){
-    /*.navbar-nav a{*/
-        /*font-size: 18px;*/
-    /*}*/
-    .navbar-brand {
-        font-size: 30px;
-    }
-}
+html, body { height: 100%; }
