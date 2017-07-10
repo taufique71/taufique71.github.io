@@ -1,0 +1,59 @@
+/*.navbar-nav a{*/
+    /*font-family: 'Roboto', sans-sherif;*/
+/*}*/
+/*.navbar-brand {*/
+    /*font-family: 'Cabin Sketch', cursive;*/
+/*}*/
+
+/*@media (min-width: 400px){*/
+    /*[>.navbar-nav a{<]*/
+        /*[>font-size: 18px;<]*/
+    /*[>}<]*/
+    /*.navbar-brand {*/
+        /*font-size: 30px;*/
+    /*}*/
+/*}*/
+
+/*------------------------------------------*
+
+/* CSS for absolute simple and clear design */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body { height: 100%; }
+
+body {
+    background-color: white;
+    font-family: 'Roboto', sans-sherif;
+    font-size: 15px;
+    text-align: center;
+}
+
+.site {
+    text-align: justify;
+    margin: 5em;
+}
+
+.site .header {
+    font-size: 120%;
+    border-bottom: 4px solid #eee;
+    margin-bottom: 2em;
+}
+
+.site .header .title {
+    font-family: 'Over the Rainbow', cursive;
+    font-size: 120%;
+    margin-bottom: 1em;
+}
+
+.site .site-body {
+}
+
+.site .footer {
+    font-size: 80%;
+    border-top: 4px solid #eee;
+    margin-top: 2em;
+}

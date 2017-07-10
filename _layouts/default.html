@@ -1,12 +1,15 @@
-<!DOCTYPE html>
 <html>
     {% include head.html %}
     <body>
-    
-        {% include header.html %}
-
-        {{ content }}
-
-        {% include footer.html %}
+        <div class="site">
+            <div class="header">
+                <a class="title" href="/">Taufique Hussain</a>
+                <a class="extra" href="/">Home</a>
+            </div>
+            <div class="site-body">
+                {{ content }}
+            </div>
+            <div class="footer"></div>
+        </div>
     </body>
 </html>
