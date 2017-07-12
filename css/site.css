@@ -32,6 +32,10 @@ body {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+}
+
 .site {
     text-align: justify;
     margin: 5em;
@@ -39,21 +43,33 @@ body {
 
 .site .header {
     font-size: 120%;
-    border-bottom: 4px solid #eee;
-    margin-bottom: 2em;
+    font-family: 'Over the Rainbow', cursive;
+    /*border-bottom: 4px solid #eee;*/
 }
 
-.site .header .title {
-    font-family: 'Over the Rainbow', cursive;
-    font-size: 120%;
+.site .header div {
+    display: inline-block;
     margin-bottom: 1em;
 }
 
+.site .header div a {
+    color: #8c1515;
+}
+
+.site .header .title {
+    font-size: 150%;
+}
+
+.site .header .extra {
+    margin-left: 2em;
+}
+
 .site .site-body {
+    margin-top: 2em;
 }
 
 .site .footer {
     font-size: 80%;
-    border-top: 4px solid #eee;
+    /*border-top: 4px solid #eee;*/
     margin-top: 2em;
 }
