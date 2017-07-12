@@ -2,19 +2,15 @@
     {% include head.html %}
     <body>
         <div class="site">
-            <div class="header">
-                <div class="title">
-                    <a href="/">Md. Taufique Hussain</a>
-                </div>
-                <div class="extra">
-                    <a href="/">Home</a>
-                </div>
-            </div>
+            {% include header.html %}
             <div class="site-body">
-                <div class=""></div>
-                {{ content }}
+                <div class="secondary-nav">
+                </div>
+                <div class="content">
+                    {{ content }}
+                </div>
             </div>
-            <div class="footer"></div>
+            {% include footer.html %}
         </div>
     </body>
 </html>
