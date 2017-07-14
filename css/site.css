@@ -29,6 +29,8 @@ body {
     background-color: #ffffff;
     font-family: 'Roboto', sans-sherif;
     font-size: 2.5vmin;
+    font-weight: 300;
+    line-height: 1.5;
     text-align: center;
 }
 
@@ -50,9 +52,21 @@ a {
     justify-content: space-between;
 }
 
+.site .footer {
+    padding-top: 1em;
+    border-top: 0.33vmin solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
 .site .header div {
     display: inline-block;
     /*margin-right: 2em;*/
+}
+
+.site .footer div{
+    font-size: 90%;
+    display: inline-block;
 }
 
 .site .header div a {
@@ -66,15 +80,22 @@ a {
 .site .site-body {
     margin-top: 2em;
     margin-bottom: 2em;
-    /* Following portion is to fix height problem due to children being float */
-    display: inline-block;
+    display: flex;
     width: 100%;
 }
 
 .site .site-body .side-nav{
-    /*display: inline-block;*/
+    display: inline-block;
+    vertical-align: top;
     width: 20%;
-    float: left;
+}
+
+.site .site-body .content{
+    display: inline-block;
+    width: 80%;
+    margin-left: 2em;
+    vertical-align: top;
+    text-align: start;
 }
 
 .site .site-body .side-nav ul{
@@ -88,24 +109,8 @@ a {
 }
 
 .site .site-body .side-nav ul li a{
-    color: black;
-    font-weight: bold;
+    color: #808080;
+    /*font-weight: 700;*/
 }
 
-.site .site-body .content{
-    /*display: inline-block;*/
-    width: 80%;
-    float: right;
-}
 
-.site .footer {
-    padding-top: 1em;
-    border-top: 0.33vmin solid #eee;
-    display: flex;
-    justify-content: space-between;
-}
-
-.site .footer div{
-    font-size: 80%;
-    display: inline-block;
-}

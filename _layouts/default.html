@@ -8,13 +8,9 @@
             {% include header.html %}
 
             <div class="site-body">
-                <div class="side-nav">
-                    <ul>
-                        <li><a href="#">About me</a></li>
-                        <li><a href="#">Resume</a></li>
-                        <li><a href="#">Books I have read</a></li>
-                    </ul>
-                </div>
+
+                {% include side-nav.html %}
+
                 <div class="content">
                     {{ content }}
                 </div>
