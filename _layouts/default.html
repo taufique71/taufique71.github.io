@@ -1,16 +1,27 @@
 <html>
+
     {% include head.html %}
+
     <body>
         <div class="site">
+
             {% include header.html %}
+
             <div class="site-body">
-                <div class="secondary-nav">
+                <div class="side-nav">
+                    <ul>
+                        <li><a href="#">About me</a></li>
+                        <li><a href="#">Resume</a></li>
+                        <li><a href="#">Books I have read</a></li>
+                    </ul>
                 </div>
                 <div class="content">
                     {{ content }}
                 </div>
             </div>
+
             {% include footer.html %}
+
         </div>
     </body>
 </html>
