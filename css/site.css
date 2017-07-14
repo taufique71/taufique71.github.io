@@ -27,7 +27,7 @@ html, body { height: 100%; }
 
 body {
     background-color: white;
-    font-family: 'Roboto', sans-sherif;
+    font-family: 'Cantarell', sans-sherif;
     font-size: 15px;
     text-align: center;
 }
@@ -45,12 +45,13 @@ a {
 .site .header {
     font-size: 120%;
     font-family: 'Over the Rainbow', cursive;
-    /*border-bottom: 4px solid #eee;*/
+    border-bottom: 4px solid #eee;
 }
 
 .site .header div {
     display: inline-block;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
+    margin-right: 2em;
 }
 
 .site .header div a {
@@ -62,15 +63,35 @@ a {
 }
 
 .site .header .extra {
-    margin-left: 2em;
+    /*margin-left: 2em;*/
 }
 
 .site .site-body {
     margin-top: 2em;
+    margin-bottom: 2em;
+    display: inline-block;
+    width: 100%;
+}
+
+.site .site-body .secondary-nav{
+    width: 20%;
+    float: left;
+}
+
+.site .site-body .content{
+    width: 80%;
+    float: right;
 }
 
 .site .footer {
     font-size: 80%;
-    /*border-top: 4px solid #eee;*/
-    margin-top: 2em;
+    padding-top: 0.5em;
+    border-top: 4px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.site .footer div{
+    display: inline-block;
+    margin-top: 0.5em;
 }
