@@ -17,7 +17,7 @@ permalink: read-books
             {{book.author}} [{{book.date}}]
             {% if book.comment %}
                 <br/>
-                {{book.comment}}
+                (Opinion: {{book.comment}})
             {% endif %}
         </li>
     {% endfor %}
