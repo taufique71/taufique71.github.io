@@ -1,0 +1,24 @@
+---
+layout: default
+title: Books I have read
+permalink: read-books
+---
+
+<h2>Books I have read</h2>
+<br/>
+<p>
+    I am not a voracious reader. I read a book taking quite a bit of time. Following is the list of my recenly read books.
+</p>
+<br/>
+<ul>
+    {% for book in site.data.read-books %}
+        <li>
+            <a href={{book.goodreads}}> {{book.title}} </a>;
+            {{book.author}} [{{book.date}}]
+            {% if book.comment %}
+                <br/>
+                {{book.comment}}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
