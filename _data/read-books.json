@@ -1,10 +1,18 @@
 [
     {
+        "title": "Deep Work: Rules for Focused Success in a Distracted World",
+        "author": "Cal Newport",
+        "goodreads": "https://www.goodreads.com/book/show/25744928-deep-work",
+        "amazon": "https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692",
+        "date": "Currently reading",
+    },
+    {
         "title": "Just for Fun: The Story of an Accidental Revolutionary",
         "author": "Linus Torvalds",
         "goodreads": "https://www.goodreads.com/book/show/160171.Just_for_Fun",
         "amazon": "https://www.amazon.com/Just-Fun-Story-Accidental-Revolutionary/dp/0066620732",
-        "date": "Currently reading"
+        "date": "August 6, 2017",
+        "comment": "A biography of Linux narrated by it's dad. To some extent biography of Linus too."
     },
     {
         "title": "My Turn: The Autobiography",
