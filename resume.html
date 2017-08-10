@@ -5,43 +5,46 @@ permalink: resume
 ---
 
 <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-<h2>Resume</h2> <br/>
-<canvas id="resume-canvas"></canvas>
+<ul>
+    <li style="display:inline-block;">
+        <h2>Resume</h2>
+    </li>
+    <li style="display:inline-block; float:right;">
+        <a href={{site.url}}/download/resume.pdf style="float:right">[Download]</a>
+    </li>
+</ul>
+<br/>
+<div id="resume-container"></div>
 <script type="text/javascript">
-  var url = "https://github.com/taufique71/taufique71.github.io/blob/master/download/resume.pdf";
-  // The workerSrc property shall be specified.
-  PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-  // Asynchronous download of PDF
-  var loadingTask = PDFJS.getDocument(url);
-  loadingTask.promise.then(function(pdf) {
-      console.log('PDF loaded');
-
-      // Fetch the first page
-      var pageNumber = 1;
-      pdf.getPage(pageNumber).then(function(page) {
-        console.log('Page loaded');
-
-        var scale = 1.5;
-        var viewport = page.getViewport(scale);
-
-        // Prepare canvas using PDF page dimensions
-        var canvas = document.getElementById('resume-canvas');
-        var context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        // Render PDF page into canvas context
-        var renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
-        var renderTask = page.render(renderContext);
-        renderTask.then(function () {
-          console.log('Page rendered');
-        });
-      });
-  }, function (reason) {
-    // PDF loading error
-    console.error(reason);
-  });
-</script>
+    var resume_url = "/download/resume.pdf";
+    function render_pdf(url, resume_container, options) {
+        var options = options || { scale: 1 };
+        var container_width = resume_container.offsetWidth;
+        function render_page(page) {
+            options.scale = container_width / page.getViewport(1.0).width;
+            console.log(options.scale);
+            var viewport = page.getViewport(options.scale);
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            var render_context = {
+              canvasContext: context,
+              viewport: viewport
+            };
+            
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            canvas.style = "border:0.5px solid #000000;";
+            resume_container.appendChild(canvas);
+            
+            page.render(render_context);
+        }
+        
+        function render_pages(pdf_doc) {
+            for(var num = 1; num <= pdf_doc.numPages; num++)
+                pdf_doc.getPage(num).then(render_page);
+        }
+        PDFJS.disableWorker = true;
+        PDFJS.getDocument(url).then(render_pages);
+    }   
+    render_pdf(resume_url, document.getElementById("resume-container"));
+</script> 
