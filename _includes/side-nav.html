@@ -1,7 +1,9 @@
 <div class="side-nav">
     <ul>
-        <li><a href="/about-me">About me</a></li>
-        <li><a href="/read-books">Books I have read</a></li>
-        <li><a href="/resume">Resume</a></li>
+        {% for nav in site.data.side-nav %}
+            <li>
+                <a href={{nav.href}}>{{nav.title}}</a>
+            </li>
+        {% endfor %}
     </ul>
 </div>
