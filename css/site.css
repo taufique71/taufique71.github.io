@@ -97,7 +97,7 @@ a {
     /*font-weight: 700;*/
 }
 
-.highlight {
+pre.highlight {
    box-sizing: border-box;
    /*margin: 0 0 1.75em 0;*/
    background-color: rgba(0, 0, 0, 0.01);
@@ -107,6 +107,6 @@ a {
    /*font-family: Inconsolata, monospace, sans-serif;*/
    /*font-size: 1.5rem !important;*/
    /*white-space: pre;*/
-   /*overflow: auto;*/
+   overflow: auto;
    border-radius: 3px;
 }

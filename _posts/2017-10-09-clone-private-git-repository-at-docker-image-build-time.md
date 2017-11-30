@@ -2,6 +2,7 @@
 layout: post
 title: Cloning Private Git Repository at Docker Image Build Time
 date: 2017-10-09
+modified: 2017-11-30
 category: tech
 permalink: cloning-private-git-repository-at-docker-build-time
 ---
@@ -30,12 +31,14 @@ My first idea was to make this ssh key accessible to docker.
 
 Dockerfile was like this -
 ```
+...
 # Install necessary packages like Git
 ADD ~/.ssh/ssh_key /tmp/
 RUN eval $(ssh-agent)
 RUN ssh-add /tmp/ssh_key
 RUN git clone <repository>
 RUN rm /tmp/ssh_key
+...
 ```  
 <br>
 
@@ -63,8 +66,7 @@ $ docker rmi <original-image-name>
 Second, using a local HTTP server.  
 <br>
 
-Idea was borrowed from another blog post. 
-You can find it in the reference section of this post.
+Idea was borrowed from another [blog post](https://farazdagi.com/2016/using-ssh-private-keys-securely-when-building-docker-images/). 
 Solution was to run a simple HTTP server from the location of the local ssh-key then from Dockerfile using one `'RUN'` instruction to download the ssh key, clone the repository and then remove the key.  
 <br>
 
@@ -93,7 +95,34 @@ RUN \
 Third, using `'ARG'` instruction of Dockerfile.  
 <br>
 
-This was 
+This solution doesn't use ssh keys. 
+It takes Github username and password as argument to the docker build command and uses those arguments for authentication.
+[Github access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) instead of password can also be used.
+In my case I used access token.  
+<br>
+
+Dockerfile was like following-
+```
+...
+ARG GITHUB_USERNAME
+ARG GITHUB_TOKEN
+RUN git clone https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/<organization-name>/<repository-name>.git
+...
+```  
+<br>
+
+Docker build command was like following -
+```
+$ docker build -t <image-name> 
+               --build-arg GITHUB_USERNAME=<github-username> 
+               --build-arg GITHUB_TOKEN=<github-access-token> .
+```  
+<br>
+<br>
+
+In my case I used the third solution to solve my problem as it seemed like that would be most portable one.  
+<br>
+<br>
 
 <br>
 #### Reference:
