@@ -4,16 +4,23 @@
         "title": "About Me"
     },
     {
+        "href": "posts",
+        "title": "All Posts"
+    },
+    {
+        "href": "tech",
+        "title": "Tech"
+    },
+    {
+        "href": "cycling",
+        "title": "Cycling"
+    },
+    {
         "href": "read-books",
         "title": "Books I Have Read"
     },
     {
         "href": "resume",
         "title": "Resume"
-    },
-    {
-        "href": "posts",
-        "title": "Posts"
     }
-
 ]
