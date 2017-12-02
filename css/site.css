@@ -110,3 +110,15 @@ pre.highlight {
    overflow: auto;
    border-radius: 3px;
 }
+
+@media (max-width: 512px) {
+    #strava-widget-container {
+        display: none;
+    }
+}
+
+@media (min-width: 512px) {
+    #strava-profile-link {
+        display: none;
+    }
+}

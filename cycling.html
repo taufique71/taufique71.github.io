@@ -1,11 +1,22 @@
 ---
-layout: page
+layout: default
 title: Cycling
 permalink: cycling
 ---
 
-<div style="margin: 0% 0% 2% 0%">
-<iframe id="strava-weekly-symmary" height='160' width='100%' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/3552257/activity-summary/6b04edd3cf3a6626b994cab02529367eee371df9'>&nbsp;</iframe>
+<h1>
+    Cycling 
+    <a id="strava-profile-link" style="float:right;" href="https://www.strava.com/athletes/3552257">
+        <img src="{{site.url}}/img/strava.jpg" style="width:7vmin; height: auto;">
+    </a>
+</h1> 
+<br/>
+<p>
+
+<div id="strava-widget-container" style="margin: 0% 0% 2% 0%;">
+    <iframe id="strava-weekly-symmary" height='160' width='100%' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/3552257/activity-summary/6b04edd3cf3a6626b994cab02529367eee371df9'>
+        &nbsp;
+    </iframe>
 </div>
 
 <ul>
@@ -17,3 +28,4 @@ permalink: cycling
         {% endif %}
     {% endfor %}
 </ul>
+</p>
