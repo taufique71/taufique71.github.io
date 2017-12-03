@@ -111,14 +111,14 @@ pre.highlight {
    border-radius: 3px;
 }
 
-@media (max-width: 512px) {
-    #strava-widget-container {
-        display: none;
-    }
-}
+/*@media (max-width: 512px) {*/
+    /*#strava-widget-container {*/
+        /*display: none;*/
+    /*}*/
+/*}*/
 
-@media (min-width: 512px) {
-    #strava-profile-link {
-        display: none;
-    }
-}
+/*@media (min-width: 512px) {*/
+    /*#strava-profile-link {*/
+        /*display: none;*/
+    /*}*/
+/*}*/
