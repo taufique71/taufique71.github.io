@@ -30,7 +30,8 @@ unpublished: false
 
 # Plugins
 whitelist: []
-plugins:   []
+plugins:
+    - jekyll-seo-tag
 
 # Conversion
 markdown:    kramdown
