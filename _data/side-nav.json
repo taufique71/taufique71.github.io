@@ -1,9 +1,5 @@
 [
     {
-        "href": "about-me",
-        "title": "About Me"
-    },
-    {
         "href": "posts",
         "title": "All Posts"
     },

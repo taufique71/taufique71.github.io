@@ -3,4 +3,10 @@ layout: default
 title: Homepage
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet euismod ipsum, ut accumsan ante. Integer vitae diam est. Duis aliquet metus diam, ut faucibus mi gravida vel. Ut aliquet lectus vitae mollis porta. Integer in fermentum neque. Ut viverra tincidunt consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse elementum est id nisl venenatis vulputate. Morbi velit massa, consequat sed vulputate ornare, porta vel orci. Praesent quis leo id purus sollicitudin porttitor ut nec sapien. Praesent vulputate viverra tortor nec ornare.
+<ul>
+    {% for post in site.posts %}
+        <li>
+            <p>{{post.date | date: "%b %-d, %Y"}} - <a href={{post.permalink}}> {{post.title}} </a> </p>
+        </li>
+    {% endfor %}
+</ul>
