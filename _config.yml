@@ -1,6 +1,6 @@
 title: Md. Taufique Hussain
 brieftitle: Taufique
-# baseUrl: ""
+baseUrl: ""
 # Where things are
 source:          .
 destination:     ./_site
