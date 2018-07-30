@@ -4,11 +4,10 @@ title: Posts
 permalink: posts
 ---
 
-Muhaha
-Number of posts: {{site.posts.size}}
-
 <ul>
     {% for post in site.posts %}
-	Testing
+        <li>
+            <p>{{post.date | date: "%b %-d, %Y"}} - <a href={{post.permalink}}> {{post.title}} </a> </p>
+        </li>
     {% endfor %}
 </ul>
