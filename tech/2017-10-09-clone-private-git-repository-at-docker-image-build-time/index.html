@@ -1,0 +1,207 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        
+            Taufique | Cloning Private Git Repository at Docker Image Build Time
+        
+    </title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="http://example.org/site.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Over+the+Rainbow" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+    <body>
+        <div class="site">
+            <div class="header">
+    <div class="title">
+        <a href="http://example.org/">Md. Taufique Hussain</a>
+    </div>
+</div>
+
+            <div class="site-body">
+                <div class="side-nav">
+    <ul>
+        
+            <li>
+                <a href=/tech/>Technical Posts</a>
+            </li>
+        
+            <li>
+                <a href=/cycling_and_travel/>Cycling And Travel Posts</a>
+            </li>
+        
+            <li>
+                <a href=/read_books/>Books I Have Read</a>
+            </li>
+        
+            <li>
+                <a href=/resume/>Resume and CV</a>
+            </li>
+        
+    </ul>
+</div>
+
+                <div class="content">
+                    
+    <h1>Cloning Private Git Repository at Docker Image Build Time</h1> 
+    <p style="color: #808080; font-size: 80%">2017-10-09</p>
+    <br/>
+    <p> 
+
+<p>Recently I faced a problem while building a Docker image for my work purpose.
+A private git repository was being cloned at the Docker image build time.
+But problem was that, to clone a private repo authentication was required.
+For this purpose, github password of my co-worker was included in the Dockerfile.
+He was the person who wrote the Dockerfile initially and couldn&rsquo;t manage much time to design it generic due to time constraint.
+I could easily use the Dockerfile to build the Docker image I needed.
+But I thought that this is not good practice to use some other person&rsquo;s password while I am the person who is building the image.
+So I wanted to come up with a solution to this problem.
+I was a complete newbie to what Docker is and how it works.
+After some research I came up with three options.
+I am going to go over these three possible solutions.<br />
+<br>
+<br></p>
+
+<p>First, through Docker <code>'ADD'</code> command.<br />
+<br></p>
+
+<p>I use ssh keys for Github authentication. So I have one residing my machine.
+My first idea was to make this ssh key accessible to docker.
+<code>'ADD'</code> instruction of Dockerfile was there to serve my purpose.<br />
+<br></p>
+
+<p>Dockerfile was like this -</p>
+
+<pre><code>...
+# Install necessary packages like Git
+ADD ~/.ssh/ssh_key /tmp/
+RUN eval $(ssh-agent)
+RUN ssh-add /tmp/ssh_key
+RUN git clone &lt;repository&gt;
+RUN rm /tmp/ssh_key
+...
+</code></pre>
+
+<p><br></p>
+
+<p>Problem is, every instruction of Dockerfile generates a layer in the Docker image and every layer of the image leaves some footprint.
+So merely <code>'rm'</code> command was not enough to get rid of that footprint of the ssh key.
+<a href="https://github.com/jwilder/docker-squash"><code>docker-squash</code></a> came to the rescue in this case.
+It is a tool to squash multiple Docker layers into one.
+In the process it gets rid of the files those were removed at later stages of Docker build.<br />
+<br></p>
+
+<p>Finally, Docker build process was like following -</p>
+
+<pre><code># Build the original Docker image first
+$ docker build -t &lt;original-image-name&gt; .
+
+# Squash the image
+$ docker save &lt;original-image-name&gt; | docker-squash -t &lt;squashed-image-name&gt; | docker load
+
+# Remove the original image
+$ docker rmi &lt;original-image-name&gt;
+</code></pre>
+
+<p><br>
+<br></p>
+
+<p>Second, using a local HTTP server.<br />
+<br></p>
+
+<p>Idea was borrowed from another <a href="https://farazdagi.com/2016/using-ssh-private-keys-securely-when-building-docker-images/">blog post</a>.
+Solution was to run a simple HTTP server from the location of the local ssh-key then from Dockerfile using one <code>'RUN'</code> instruction to download the ssh key, clone the repository and then remove the key.<br />
+<br></p>
+
+<p>I used Python&rsquo;s SimpleHTTPServer. You can use any.</p>
+
+<pre><code>$ cd ~/.ssh/
+$ python -m SimpleHTTPServer
+</code></pre>
+
+<p><br></p>
+
+<p>Dockerfile was like following -</p>
+
+<pre><code>...
+RUN \
+  wget -O /tmp/ssh_key http://&lt;IP_ADDRESS&gt;:&lt;8000&gt;/ssh_key &amp;&amp; \
+  chmod 600 /tmp/ssh_key &amp;&amp; \
+  eval $(ssh-agent) &amp;&amp; \
+  ssh-add /tmp/ssh_key &amp;&amp; \
+  git clone &lt;repository&gt;  &amp;&amp; \
+  rm /tmp/id_rsa
+...
+</code></pre>
+
+<p><br>
+<br></p>
+
+<p>Third, using <code>'ARG'</code> instruction of Dockerfile.<br />
+<br></p>
+
+<p>This solution doesn&rsquo;t use ssh keys.
+It takes Github username and password as argument to the docker build command and uses those arguments for authentication.
+<a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">Github access token</a> instead of password can also be used.
+In my case I used access token.<br />
+<br></p>
+
+<p>Dockerfile was like following-</p>
+
+<pre><code>...
+ARG GITHUB_USERNAME
+ARG GITHUB_TOKEN
+RUN git clone https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/&lt;organization-name&gt;/&lt;repository-name&gt;.git
+...
+</code></pre>
+
+<p><br></p>
+
+<p>Docker build command was like following -</p>
+
+<pre><code>$ docker build -t &lt;image-name&gt; 
+               --build-arg GITHUB_USERNAME=&lt;github-username&gt; 
+               --build-arg GITHUB_TOKEN=&lt;github-access-token&gt; .
+</code></pre>
+
+<p><br>
+<br></p>
+
+<p>In my case I used the third solution to solve my problem as it seemed like that would be most portable one.<br />
+<br>
+<br></p>
+
+<p><br></p>
+
+<h4 id="reference">Reference:</h4>
+
+<ol>
+<li><a href="http://blog.cloud66.com/pulling-git-into-a-docker-image-without-leaving-ssh-keys-behind/">Pulling Git into a Docker image without leaving SSH keys behind</a></li>
+<li><a href="https://farazdagi.com/2016/using-ssh-private-keys-securely-when-building-docker-images/">Using SSH private keys securely when building Docker images</a></li>
+<li><a href="https://docs.docker.com/engine/reference/builder/#arg">Dockerfile reference</a></li>
+</ol>
+ </p>
+
+                </div>
+            </div>
+            <div class="footer">
+    <div class="contact">
+        <p><a href="https://twitter.com/TaufiqueHussain">Twitter</a></p>
+    </div>
+    <div class="contact">
+        <p><a href="http://www.github.com/taufique71">Github</a> </p>
+    </div>
+    <div class="contact">
+        <p><a href="https://www.linkedin.com/in/md-taufique-hussain-6b99a718/">LinkedIn</a> </p>
+    </div>
+</div>
+
+        </div>
+    </body>
+</html>

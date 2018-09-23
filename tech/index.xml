@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technical Posts on Md. Taufique Hussain</title>
+    <link>http://example.org/tech/</link>
+    <description>Recent content in Technical Posts on Md. Taufique Hussain</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/tech/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Necessary Vim Commands</title>
+      <link>http://example.org/tech/2018-07-31-vim-commands/</link>
+      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tech/2018-07-31-vim-commands/</guid>
+      <description>I was introduced to Vim in 2012. At that time I was working on some Linux Kernel Module develpment and vim was becomming necessary for some text editing purpose. Initially it felt like pretty wierd back then. But later it became definition of a unique user experience that I can&amp;rsquo;t get rid of. I even discovered that I try to find this experience pretty much everywhere - from file browser to internet browser.</description>
+    </item>
+    
+    <item>
+      <title>First Step with Custom Analysis in Soot Framework</title>
+      <link>http://example.org/tech/2017-12-22-first-step-with-custom-analysis-in-soot-framework/</link>
+      <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tech/2017-12-22-first-step-with-custom-analysis-in-soot-framework/</guid>
+      <description>For some personal works, recently I had to learn Soot framework - a framework for analyzing and transforming Java and Android applications. I could manage to use it for my purpose quite well but I faced some problems while learning how to use it. There are many resources out there in the Soot wiki but still I had to invest quite an amount of focus and time to grasp the primary concept of a custom Soot analysis.</description>
+    </item>
+    
+    <item>
+      <title>Cloning Private Git Repository at Docker Image Build Time</title>
+      <link>http://example.org/tech/2017-10-09-clone-private-git-repository-at-docker-image-build-time/</link>
+      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tech/2017-10-09-clone-private-git-repository-at-docker-image-build-time/</guid>
+      <description>Recently I faced a problem while building a Docker image for my work purpose. A private git repository was being cloned at the Docker image build time. But problem was that, to clone a private repo authentication was required. For this purpose, github password of my co-worker was included in the Dockerfile. He was the person who wrote the Dockerfile initially and couldn&amp;rsquo;t manage much time to design it generic due to time constraint.</description>
+    </item>
+    
+  </channel>
+</rss>
