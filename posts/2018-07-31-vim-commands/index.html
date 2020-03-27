@@ -1,0 +1,129 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        
+            Taufique | Necessary Vim Commands
+        
+    </title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://www.taufique.me/css/bootstrap.css">
+    <link rel="stylesheet" href="https://www.taufique.me/css/blog.css">
+    <link rel="stylesheet" href="https://www.taufique.me/css/mystyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Over+the+Rainbow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <script type="text/javascript" src="https://www.taufique.me/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://www.taufique.me/js/popper.js"></script>
+    <script type="text/javascript" src="https://www.taufique.me/js/bootstrap.js"></script>
+</head>
+
+    <body>
+        <div class="container">
+            <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-12 text-center">
+            <a class="blog-header-logo text-dark" href="https://www.taufique.me/">Md Taufique Hussain</a>
+        </div>
+    </div>
+</header>
+
+            <div class="nav-scroller blog-nav py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+        
+            <a class="p-2 text-muted" href=/research/>Research</a>
+        
+            <a class="p-2 text-muted" href=/publications/>Publications</a>
+        
+            <a class="p-2 text-muted" href=/posts/>Posts</a>
+        
+            <a class="p-2 text-muted" href=/journal/>Journal</a>
+        
+            <a class="p-2 text-muted" href=/about/>About Me</a>
+        
+    </nav>
+</div>
+
+            <main class="container">
+                <div class="row">
+                    <div class="col-md-12 blog-main">
+                         
+                            <h2 class="blog-post-title">
+                                Necessary Vim Commands
+                            </h2> 
+                        
+
+                        
+                            <p class="blog-post-meta">
+                                 2018-07-31 
+                            </p>
+                        
+
+                        
+    <p> 
+
+<p>I was introduced to Vim in 2012.
+At that time I was working on some Linux Kernel Module develpment and vim was becomming necessary for some text editing purpose.
+Initially it felt like pretty wierd back then.
+But later it became definition of a unique user experience that I can&rsquo;t get rid of.
+I even discovered that I try to find this experience pretty much everywhere - from file browser to internet browser.
+This is not only me, I know many more persons who experience the same as I have.
+Here are some useful plugins and commands of Vim that I found useful in my case.
+Purpose of this post is not for being an exhaustive reference point.
+This is just for my future reference only.
+<br/></p>
+
+<h3 id="useful-command-list">Useful Command List</h3>
+
+<p>This is the list of Vim commands which became useful to me.</p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ul>
+<li><a href="#tabs">Tabs</a></li>
+<li><a href="#line-movement">Line Movement</a></li>
+<li><a href="#search">Search</a></li>
+</ul>
+
+<h5 id="tabs">Tabs</h5>
+
+<ul>
+<li><code>:gt</code> - Switch to next tab</li>
+<li><code>:gT</code> - Switch to previous tab</li>
+<li><code>:{count}gt</code> - Go to tab page {count}. The first tab page has number one. As example, <code>5gt</code> goes to fifth tab.</li>
+<li><code>:{count}gT</code> - Go {count} tab pages back. Wraps around from the first one to the last one. As example <code>5gT</code> goes five tabs back from current tab.</li>
+</ul>
+
+<h5 id="line-movement">Line Movement</h5>
+
+<p>To move just a single line -
+- <code>:m 71</code> - Move current line after line 71
+- <code>:m 0</code> - Move current line before first line
+- <code>:m $</code> - Move current line after last line</p>
+
+<p>To move a block of lines -
+- <code>:7,11m 71</code> - Move line 7,8,9,10 and 11 after line 71
+- <code>:7,11m 0</code> - Move line 7,8,9,10 and 11 before first line
+- <code>:7,11m $</code> - Move line 7,8,9,10 and 11 after last line</p>
+
+<h5 id="search">Search</h5>
+
+<ul>
+<li><code>/text</code> - Searches the given text in the whole document</li>
+<li><code>n</code> - Next occurance of current search result</li>
+<li><code>N</code> - Previous occurance of current search result</li>
+<li><code>*</code> - Searches further occurance of the token on which cursor is placed currently</li>
+<li><code>:set hlsearch</code> - Highlights all the texts found in search result</li>
+<li><code>:nohlsearch</code> - Removes search highlights</li>
+</ul>
+ </p>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

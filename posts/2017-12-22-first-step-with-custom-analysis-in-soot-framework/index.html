@@ -1,0 +1,147 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        
+            Taufique | First Step with Custom Analysis in Soot Framework
+        
+    </title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://www.taufique.me/css/bootstrap.css">
+    <link rel="stylesheet" href="https://www.taufique.me/css/blog.css">
+    <link rel="stylesheet" href="https://www.taufique.me/css/mystyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Over+the+Rainbow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <script type="text/javascript" src="https://www.taufique.me/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://www.taufique.me/js/popper.js"></script>
+    <script type="text/javascript" src="https://www.taufique.me/js/bootstrap.js"></script>
+</head>
+
+    <body>
+        <div class="container">
+            <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-12 text-center">
+            <a class="blog-header-logo text-dark" href="https://www.taufique.me/">Md Taufique Hussain</a>
+        </div>
+    </div>
+</header>
+
+            <div class="nav-scroller blog-nav py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+        
+            <a class="p-2 text-muted" href=/research/>Research</a>
+        
+            <a class="p-2 text-muted" href=/publications/>Publications</a>
+        
+            <a class="p-2 text-muted" href=/posts/>Posts</a>
+        
+            <a class="p-2 text-muted" href=/journal/>Journal</a>
+        
+            <a class="p-2 text-muted" href=/about/>About Me</a>
+        
+    </nav>
+</div>
+
+            <main class="container">
+                <div class="row">
+                    <div class="col-md-12 blog-main">
+                         
+                            <h2 class="blog-post-title">
+                                First Step with Custom Analysis in Soot Framework
+                            </h2> 
+                        
+
+                        
+                            <p class="blog-post-meta">
+                                 2017-12-22 
+                            </p>
+                        
+
+                        
+    <p> <p>For some personal works, recently I had to learn <a href="https://sable.github.io/soot/">Soot framework</a> - a framework for analyzing and transforming Java and Android applications.
+I could manage to use it for my purpose quite well but I faced some problems while learning how to use it.
+There are many resources out there in the <a href="https://github.com/sable/soot/wiki">Soot wiki</a> but still I had to invest quite an amount of focus and time to grasp the primary concept of a custom Soot analysis.
+I think the reason behind this is lack of resources that helps in taking baby steps with Soot.
+So, I thought I should write a post on it for my future references as well as to help the Soot newbies out there who are struggling with same case.<br />
+<br/></p>
+
+<p>First step is to decide in which pack the analysis is to be placed.
+Soot has concepts of packs and phases in it&rsquo;s execution flow.
+Details of these concepts can be read in <a href="http://www.bodden.de/2008/11/26/soot-packs/">this blog post</a> of Professor Eric Bodden.
+Two packs <code>jtp</code> and <code>wjtp</code> are involved with custom analysis.
+If analysis is intra-procedural one then <code>jtp</code> pack is to be used and if the analysis is inter-procedural one then <code>wjtp</code> pack is to be used.<br />
+<br/></p>
+
+<p>Next step is to create a class implementing appropriate interface provided by Soot.
+If target pack is <code>jtp</code> then <code>BodyTransformer</code> interface is to be implemented.
+If target pack is <code>wjtp</code> then <code>SceneTransformer</code> interface is to be implemented.
+In both cases method to be implemented is <code>internalTransform</code>.
+Difference is that in case of <code>SceneTransformer</code>, <code>internalTransform</code> method takes two arguments while in case of <code>BodyTransformer</code>, <code>internalTransform</code> method takes three arguments - one extra argument for method body to be analyzed.
+So, the implemented class would be like following -<br />
+<br/></p>
+
+<pre><code class="language-java">package x;
+
+import soot.*;
+import java.util.*;
+
+public class XAnalyzer extends BodyTransformer{
+    protected void internalTransform(Body b, String phaseName, Map options){
+        // Run analysis
+    }
+}
+</code></pre>
+
+<p><br/></p>
+
+<p>Next thing to do is to add this new analysis to the appropriate pack of Soot.
+To do it, a new main class is to be introduced.
+From this main class, new analysis class is added to the appropriate pack and main method of Soot is called to delegate next stages of execution.
+Code of this main class would be like following -<br />
+<br/></p>
+
+<pre><code class="language-java">package x;
+
+import soot.*;
+
+public class Main{
+    public static void main(String args[]){
+        // Add the new analysis to appripriate pack of Soot
+        soot.PackManager.v()
+            .getPack(&quot;jtp&quot;)
+            .add(new Transform(&quot;jtp.x&quot;, new XAnalyzer()));
+
+        // Delegate next stages of execution to main method of Soot.
+        soot.Main.main(args);
+    }
+}
+</code></pre>
+
+<p><br/></p>
+
+<p>Now, the new main class can be run in following way to see that new analysis is also run in the process.
+Usage is same as the usage of Soot as command line tool.<br />
+<br/></p>
+
+<pre><code class="language-java">java -cp ./lib/sootclasses-2.5.0.jar:./lib/jasminclasses-2.5.0.jar:./lib/polyglotclasses-1.3.5.jar:. constantanalyzer.Main -cp ./test:. -pp -process-dir ./test/
+</code></pre>
+
+<p><br/></p>
+
+<p>References:
+1. <a href="http://www.bodden.de/2008/11/26/soot-packs/">Packs and Phases in Soot</a>
+2. <a href="A Survivor's Guide to Java Program Analysis with Soot">A Survivor&rsquo;s Guide to Java Program Analysis with Soot</a>
+3. <a href="https://mailman.cs.mcgill.ca/pipermail/soot-list/">Soot Mailing List Archive</a></p>
+ </p>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

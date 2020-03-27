@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home on Md. Taufique Hussain</title>
-    <link>https://www.taufique.me/</link>
-    <description>Recent content in Home on Md. Taufique Hussain</description>
+    <title>Posts on Md. Taufique Hussain</title>
+    <link>https://www.taufique.me/posts/</link>
+    <description>Recent content in Posts on Md. Taufique Hussain</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 31 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.taufique.me/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.taufique.me/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -56,24 +56,6 @@ The sun was just rising. We found a thick layer of fog just above the ground as 
       
       <guid>https://www.taufique.me/posts/2017-10-09-clone-private-git-repository-at-docker-image-build-time/</guid>
       <description>Recently I faced a problem while building a Docker image for my work purpose. A private git repository was being cloned at the Docker image build time. But problem was that, to clone a private repo authentication was required. For this purpose, github password of my co-worker was included in the Dockerfile. He was the person who wrote the Dockerfile initially and couldn&amp;rsquo;t manage much time to design it generic due to time constraint.</description>
-    </item>
-    
-    <item>
-      <title>Books I Read</title>
-      <link>https://www.taufique.me/about/read-books/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.taufique.me/about/read-books/</guid>
-      <description>Some books I read which are worth mentioning.</description>
-    </item>
-    
-    <item>
-      <title>Sparse Matrix Matrix Multiplication</title>
-      <link>https://www.taufique.me/research/spgemm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.taufique.me/research/spgemm/</guid>
-      <description>Description of my research involving sparse matrix-matrix multiplication would go here.</description>
     </item>
     
   </channel>

@@ -1,0 +1,12 @@
+/* Customized CSS using IU Brand colors */
+/* https://brand.iu.edu/design/colors.html */
+
+body {
+    /*background-color: #EDEBEB !important*/
+    font-family: Roboto !important
+}
+
+.journal-date {
+    font-family: Roboto
+}
+
